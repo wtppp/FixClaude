@@ -951,8 +951,8 @@ Notes on fallbacks:
   - Runtime wrappers are designed to keep working without Python when a valid preferred node/cli path or common fallback path exists.
 
 Commands:
-  install      Install or refresh the managed Claude wrapper
-  repair       Same as install
+  install      Install the managed Claude wrapper set, or refresh it if already present
+  repair       Rebuild the managed wrapper set when detection or execution is broken
   doctor       Print current diagnosis and detected resources
   dry-test     Run non-invasive preflight checks without modifying files
   post-test    Validate managed wrapper and compat links, including GUI-like execution

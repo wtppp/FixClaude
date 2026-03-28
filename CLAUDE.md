@@ -2,7 +2,7 @@
 
 ## Project purpose
 
-This directory contains a local compatibility toolkit for making a pnpm/npm-installed Claude Code CLI discoverable by desktop wrappers and GUI apps that expect Claude to exist in user-level well-known locations.
+This directory contains a local compatibility toolkit for making a Claude Code CLI discoverable by desktop wrappers and GUI apps that expect Claude to exist in user-level well-known locations. It is intentionally broader than npm-only repair: the toolkit supports pnpm/npm-style installs, runtime wrapper regeneration, compatibility links, and validation flows aimed at GUI-like execution environments.
 
 Primary artifacts:
 - `fix-claude-wrapper.sh` — main installer / repair / validation toolkit
@@ -38,6 +38,10 @@ Run a non-invasive preflight first:
 ./fix-claude-wrapper.sh repair
 ```
 
+Command intent:
+- `install` — standard install or refresh flow for the managed wrapper/link set
+- `repair` — rebuild the managed wrapper/link set when discovery, links, cached state, or GUI execution appear broken
+
 ### Post-install validation
 
 ```sh
@@ -60,6 +64,7 @@ Useful commands:
 ./fix-claude-wrapper.sh doctor
 ./fix-claude-wrapper.sh dry-test
 ./fix-claude-wrapper.sh install
+./fix-claude-wrapper.sh repair
 ./fix-claude-wrapper.sh post-test
 ./fix-claude-wrapper.sh matrix-test
 ./fix-claude-wrapper.sh uninstall
@@ -92,9 +97,9 @@ The toolkit should support three layers of confidence:
 
 1. `dry-test` — non-invasive preflight
 2. `post-test` — generated wrapper/link validation
-3. `matrix-test` — broadest built-in validation across paths, target resolution, state, and GUI-like execution
+3. `matrix-test` — broadest built-in validation across paths, target resolution, cached state, and GUI-like execution
 
-The dedicated regression script should continue to exercise all major commands in sequence.
+The dedicated regression script should continue to exercise all major commands in sequence, including repair/install flows and the built-in validation commands.
 
 ## Safety / ownership rules
 
